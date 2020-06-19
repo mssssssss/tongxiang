@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MyCommunity" Class="MyCommunityDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\MyCommunity综合版3.0\MyBlogWork\MyBlog.Web\App_Data\MyCommunity.mdf;Integrated Security=True" SettingsObjectName="MyBlog.DAL.Properties.Settings" SettingsPropertyName="MyCommunityConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.CityPic" Member="CityPic">
+    <Type Name="CityPic">
+      <Column Name="CityPicId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProvinceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CityPicUrl" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Province_CityPic" Member="Province" ThisKey="ProvinceId" OtherKey="ProvinceId" Type="Province" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Zan" Member="Zan">
+    <Type Name="Zan">
+      <Column Name="ZanId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TopicId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Topic_Zan" Member="Topic" ThisKey="TopicId" OtherKey="TopicId" Type="Topic" IsForeignKey="true" />
+      <Association Name="User_Zan" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Collect" Member="Collect">
+    <Type Name="Collect">
+      <Column Name="CollectId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TopicId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Topic_Collect" Member="Topic" ThisKey="TopicId" OtherKey="TopicId" Type="Topic" IsForeignKey="true" />
+      <Association Name="User_Collect" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Comment" Member="Comment">
+    <Type Name="Comment">
+      <Column Name="CommentId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TopicId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CmtContent" Type="System.String" DbType="VarChar(8000) NOT NULL" CanBeNull="false" />
+      <Column Name="PreCmtId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CmtTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Topic_Comment" Member="Topic" ThisKey="TopicId" OtherKey="TopicId" Type="Topic" IsForeignKey="true" />
+      <Association Name="User_Comment" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Fan" Member="Fan">
+    <Type Name="Fan">
+      <Column Name="FanId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FollowerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_Fan" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
+      <Association Name="User_Fan1" Member="User1" ThisKey="FollowerId" OtherKey="UserId" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Major" Member="Major">
+    <Type Name="Major">
+      <Column Name="MajorId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MajorName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Major_Topic" Member="Topic" ThisKey="MajorId" OtherKey="MajorId" Type="Topic" />
+      <Association Name="Major_User" Member="User" ThisKey="MajorId" OtherKey="MajorId" Type="User" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Message" Member="Message">
+    <Type Name="Message">
+      <Column Name="MessageId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AuthorId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MessageContent" Type="System.String" DbType="VarChar(5000) NOT NULL" CanBeNull="false" />
+      <Column Name="MessageTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="User_Message" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
+      <Association Name="User_Message1" Member="User1" ThisKey="AuthorId" OtherKey="UserId" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Photo" Member="Photo">
+    <Type Name="Photo">
+      <Column Name="PhotoId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PhotoName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PhotoUrl" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PhotoTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="User_Photo" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Province" Member="Province">
+    <Type Name="Province">
+      <Column Name="ProvinceId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProvinceName" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="Province_CityPic" Member="CityPic" ThisKey="ProvinceId" OtherKey="ProvinceId" Type="CityPic" />
+      <Association Name="Province_User" Member="User" ThisKey="ProvinceId" OtherKey="ProvinceId" Type="User" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Topic" Member="Topic">
+    <Type Name="Topic">
+      <Column Name="TopicId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AuthorId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MajorId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DiffLevel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TopicTitle" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TopicContent" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="TopicTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LikesCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CommentCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Topic_Zan" Member="Zan" ThisKey="TopicId" OtherKey="TopicId" Type="Zan" />
+      <Association Name="Topic_Collect" Member="Collect" ThisKey="TopicId" OtherKey="TopicId" Type="Collect" />
+      <Association Name="Topic_Comment" Member="Comment" ThisKey="TopicId" OtherKey="TopicId" Type="Comment" />
+      <Association Name="Major_Topic" Member="Major" ThisKey="MajorId" OtherKey="MajorId" Type="Major" IsForeignKey="true" />
+      <Association Name="User_Topic" Member="User" ThisKey="AuthorId" OtherKey="UserId" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="User">
+    <Type Name="User">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="PassWord" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Sex" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="School" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Education" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="MajorId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HeadPic" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="StuCard" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ProvinceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CheckStatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="JoinTime" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="User_Zan" Member="Zan" ThisKey="UserId" OtherKey="UserId" Type="Zan" />
+      <Association Name="User_Collect" Member="Collect" ThisKey="UserId" OtherKey="UserId" Type="Collect" />
+      <Association Name="User_Comment" Member="Comment" ThisKey="UserId" OtherKey="UserId" Type="Comment" />
+      <Association Name="User_Fan" Member="Fan" ThisKey="UserId" OtherKey="UserId" Type="Fan" />
+      <Association Name="User_Fan1" Member="Fan1" ThisKey="UserId" OtherKey="FollowerId" Type="Fan" />
+      <Association Name="User_Message" Member="Message" ThisKey="UserId" OtherKey="UserId" Type="Message" />
+      <Association Name="User_Message1" Member="Message1" ThisKey="UserId" OtherKey="AuthorId" Type="Message" />
+      <Association Name="User_Photo" Member="Photo" ThisKey="UserId" OtherKey="UserId" Type="Photo" />
+      <Association Name="User_Topic" Member="Topic" ThisKey="UserId" OtherKey="AuthorId" Type="Topic" />
+      <Association Name="User_Watch" Member="Watch" ThisKey="UserId" OtherKey="UserId" Type="Watch" />
+      <Association Name="User_Watch1" Member="Watch1" ThisKey="UserId" OtherKey="FollowingId" Type="Watch" />
+      <Association Name="Major_User" Member="Major" ThisKey="MajorId" OtherKey="MajorId" Type="Major" IsForeignKey="true" />
+      <Association Name="Province_User" Member="Province" ThisKey="ProvinceId" OtherKey="ProvinceId" Type="Province" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Watch" Member="Watch">
+    <Type Name="Watch">
+      <Column Name="WatchId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FollowingId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_Watch" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
+      <Association Name="User_Watch1" Member="User1" ThisKey="FollowingId" OtherKey="UserId" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
