@@ -1,0 +1,88 @@
+﻿ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.it {
+    border-bottom: 1px solid #ccc;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.tl {
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 7px;
+}
+
+.lblType {
+    font-size: 14px;
+    font-weight: 100;
+    color: #fff;
+    padding: 5px;
+    background-color: rgb(88, 157, 198);
+    border-radius: 5px;
+    margin-left: 3px;
+    margin-right: 7px;
+}
+
+
+.c {
+    display: -webkit-box; /*将对象作为弹性伸缩盒子模型显示;*/
+    -webkit-line-clamp: 2; /* 设置文本显示两行*/
+    -webkit-box-orient: vertical; /* 从上到下排列子元素;*/
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis; /*两行内容，超出部分以省略号形式显示*/
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.lblName {
+    color: rgb(9, 101, 160);
+    text-decoration: none;
+}
+
+.lblTime {
+    color: #333;
+    margin-left: 15px;
+}
+
+    .lblTime + div {
+        float: right;
+    }
+
+.img-see {
+    width: 20px;
+    height: 20px;
+    margin-top: 3px;
+}
+
+.lblSee {
+    color: rgb(9, 101, 160);
+    margin-right: 10px;
+}
+
+.readAll {
+    float: right;
+    color: rgb(9, 101, 160);
+}
+
+.page {
+    float: right;
+    height: 25px;
+    line-height: 25px;
+    margin-top: 10px;
+    color: #999;
+}
+
+#totalNum {
+    margin-right: 15px;
+}
+
+.btnPage {
+    border: none;
+    font-size: 15px;
+    color: rgb(88, 157, 198);
+}
